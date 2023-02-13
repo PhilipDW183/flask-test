@@ -1,8 +1,8 @@
 from flask import Flask, render_template, url_for, redirect, request
-from todo_app.data.session_items import get_items, add_item, save_item, get_item, remove_item, update_item
+from data.session_items import get_items, add_item, save_item, get_item, remove_item, update_item
 
 
-from todo_app.flask_config import Config
+from flask_config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config())
