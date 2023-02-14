@@ -12,4 +12,7 @@ def create_app():
     from core.main import home as home_bp
     app.register_blueprint(home_bp)
 
+    from core.todo import todo as todo_bp
+    app.register_blueprint(todo_bp)
+
     return app
