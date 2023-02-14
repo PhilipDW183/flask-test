@@ -16,5 +16,7 @@ RUN pip install -r requirements.txt
 # Copy the content of the local src directory to the working directory
 COPY . .
 
+EXPOSE 80
+
 # Specify the command to run on container start
-CMD [ "python", "app.py" ]
+CMD ["gunicorn", "wsgi:app", "--bind", " 0.0.0.0:80"] 
