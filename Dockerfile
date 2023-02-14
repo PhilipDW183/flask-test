@@ -5,7 +5,7 @@ FROM python:3.8-alpine
 EXPOSE 5000/tcp
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /LIGHTSAIL-CONTAINERS-FLASK
 
 # Copy the dependencies file to the working directory
 COPY requirements.txt .
@@ -14,7 +14,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy the content of the local src directory to the working directory
-COPY app.py .
+COPY . .
 
 # Specify the command to run on container start
-CMD [ "python", "./app.py" ]
+CMD [ "python", "app.py" ]

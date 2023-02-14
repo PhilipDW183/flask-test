@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, redirect, request
-from data.session_items import get_items, add_item, save_item, get_item, remove_item, update_item
+from data.session_items import get_items, add_item, remove_item, update_item
 
 
 from flask_config import Config
@@ -42,4 +42,4 @@ def delete_item(id):
     return redirect(url_for("index"))
 
 if __name__ == "__main__":
-    app.run(host = "0.0.0.0", port = 5000)
+    app.run(debug=True, host = "0.0.0.0", port = 5000)
