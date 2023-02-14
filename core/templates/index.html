@@ -92,7 +92,7 @@
 
     <div class = "form_collect mt-3 mb-5" id="new_task">
         <h3 class="mb-3 mt-3"><u>New Task</u></h3>
-        <form action = {{ url_for("create_new_task") }} method="post">
+        <form action = {{ url_for("main.create_new_task") }} method="post">
             <div class="form-group">
                 <label for="todo">Enter a task to complete: </label>
                 <input type = "text" name="todo" id="todo" class="form-control" placeholder="task" required>
