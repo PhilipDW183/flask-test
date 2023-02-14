@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, redirect, request
-from data.session_items import get_items, add_item, remove_item, update_item
+from core.data.session_items import get_items, add_item, remove_item, update_item
 
 
 from flask_config import Config
@@ -43,5 +43,3 @@ def create_app():
         return redirect(url_for("index"))
 
     return app
-#if __name__ == "__main__":
-#    app.run(debug=True, host = "0.0.0.0", port = 5000)
