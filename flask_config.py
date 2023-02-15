@@ -10,3 +10,4 @@ class Config:
         self.SECRET_KEY = os.environ.get("SECRET_KEY")
         if not self.SECRET_KEY:
             raise("Secret key missing. Something is wrong")
+        self.YELP_AUTH_TOKEN = os.environ.get("YELP_AUTH_TOKEN")

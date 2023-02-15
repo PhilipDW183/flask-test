@@ -15,4 +15,7 @@ def create_app():
     from core.todo import todo as todo_bp
     app.register_blueprint(todo_bp)
 
+    from core.food import food as food_bp
+    app.register_blueprint(food_bp)
+
     return app
