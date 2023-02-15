@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
-{% block title %}To-Do App{% endblock %}
+{% block title %}Restaurant suggestor{% endblock %}
 
 {% block content %}
-    <div class="jumbotron bg-primary text-light">
+    <div class="jumbotron bg-info text-light">
         <h1 class="display-4">Restaurant suggestor</h1>
         <p class="lead">Enter a city and find restaurant suggestions</p>
     </div>
@@ -26,7 +26,7 @@
   
                   <div class="input-group-append">
                     <button
-                      class="btn btn-primary"
+                      class="btn btn-info"
                       type="submit"
                     >
                       Find restaurants
@@ -59,7 +59,7 @@
                         <img src="{{ restaurant.image_url }}" class="card-img-top" alt="restaurant image">
                         <div class = "card-body">
                             <h5 class = "card-title">
-                                <a href="{{restaurant.url}}">
+                                <a href="{{restaurant.url}}" target="_blank" rel="noopener noreferrer">
                                     {{restaurant.name}}
                                 </a>
                             </h5>
