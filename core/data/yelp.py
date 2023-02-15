@@ -8,7 +8,7 @@ _RESTAURANTS = [
 
 ]
 _ERROR = []
-_CTIY = ""
+_CITY = ""
 
 def get_businesses():
     """
@@ -28,6 +28,15 @@ def get_errors():
     """
     return session.get("error", _ERROR.copy())
 
+def get_city():
+    """
+    Fetches the current city from the session
+
+    returns:
+        string: city
+    """
+    return session.get("city", _CITY)
+
 def get_city_restaurants( city ):
     """
     gets restaurants from the given city
@@ -44,6 +53,7 @@ def get_city_restaurants( city ):
 
     
     session["error"] = []
+    session["city"] = city
 
     try:
         request = requests.get(
