@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block title %}To-Do App{% endblock %}
+
+{% block content %}
+    <div class="jumbotron bg-primary text-light">
+        <h1 class="display-4">Seafood suggester</h1>
+        <p class="lead">Eneter a city and find seafood suggestions</p>
+    </div>
+
+    <div class="container">
+        <div class="row form-container">
+          <div class="col-md-10">
+            <form action={{ url_for("food.get_places") }} method="POST">
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Type a city"
+                    name="city"
+                    id="city"
+                    aria-label="Type a city"
+                    aria-describedby="submit"
+                    required
+                  />
+  
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-primary"
+                      type="submit"
+                    >
+                      Find seafood
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card-deck">
+            {% for restaurant in restaurants %}
+            <div class = "col-12 col-sm-6 col-lg-6 mb-3">
+                <div class = "card">
+                    <img src="{{ restaurant.image_url }}" class="card-img-top" alt="restaurant image">
+                    <div class = "card-body">
+                        <h5 class = "card-title">
+                            <a href="{{restaurant.url}}">
+                                {{restaurant.name}}
+                            </a>
+                        </h5>
+                        <h6 class = "card-subtitle text-muted mb-2">
+                            Price: {{restaurant.price}} </br>
+                            Rating: {{restaurant.rating}}
+                        </h6>
+                        <p>
+                            {{restaurant.location.address1}}</br>
+                            {{restaurant.location.city}}</br>
+                            {{restaurant.location.zip_code}}</br>
+                        </p>
+                    </div>
+                    <div class = "card-footer">
+                        <p><b>Contact: {{restaurant.display_phone}}</b></p>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+            
+
+        </div>
+    </div>
+
+
+{% endblock %}
