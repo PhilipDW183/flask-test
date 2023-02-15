@@ -2,10 +2,13 @@ from flask_config import Config
 import requests
 import json
 from flask import session
+import logging
 
 _RESTAURANTS = [
 
 ]
+_ERROR = []
+_CTIY = ""
 
 def get_businesses():
     """
@@ -16,18 +19,14 @@ def get_businesses():
     """
     return session.get("restaurants", _RESTAURANTS.copy())
 
-def clear_buinsses():
+def get_errors():
     """
-    Clears all buinsses saved from the session
+    Fetches all errors saved from the session
+
+    returns:
+        list: the list of errors
     """
-    existing_restaurants = get_businesses()
-
-    updated_restaurants = existing_restaurants.clear
-
-    session["restaurants"] = updated_restaurants
-
-    return
-
+    return session.get("error", _ERROR.copy())
 
 def get_city_restaurants( city ):
     """
@@ -43,14 +42,41 @@ def get_city_restaurants( city ):
     headers = {"Authorization": "Bearer " + Config().YELP_AUTH_TOKEN}
     params = {"location": city, "limit": 5, "term": "restaurants" }
 
-    request = requests.get(
-        "https://api.yelp.com/v3/businesses/search",
-        params=params,
-        headers=headers
-    )
+    
+    session["error"] = []
 
-    businesses = json.loads(request.text)["businesses"]
-
-    session["restaurants"] = businesses
+    try:
+        request = requests.get(
+            "https://api.yelp.com/v3/businesses/search",
+            params=params,
+            headers=headers
+        )
+        request.raise_for_status()
+        businesses = json.loads(request.text)["businesses"]
+        session["restaurants"] = businesses
+    except requests.exceptions.RequestException as e:
+        #log the error and return an empty list
+        logging.error(f"Error in get_city_resuatrants: {e}")
+        session["restaurants"] = []
+        session["error"] = json.loads(request.text)["error"]
 
     return city
+
+def error_message():
+    """
+    Transform API error into a readable messages
+    
+    output:
+        string: readable error messgae
+    """
+
+    error = get_errors()
+
+    print(error)
+    
+    if not error:
+        return ""
+    elif error.get("code") == "LOCATION_NOT_FOUND":
+        return "Location not found. Please try again."
+    else:
+        return "Search failed. Please try again."

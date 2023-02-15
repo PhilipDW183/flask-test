@@ -1,13 +1,16 @@
 from core.food import food
 from flask import render_template, request, redirect, url_for
-from core.data.yelp import get_businesses, get_city_restaurants, clear_buinsses
+from core.data.yelp import get_businesses, get_city_restaurants, error_message
 
 base_path = "/food"
 
 @food.route(base_path)
 def food_index():
     restaurants = get_businesses()
-    return render_template("food.html", restaurants=restaurants)
+    error = error_message()
+    return render_template("food.html", 
+        restaurants=restaurants,
+        error = error)
 
 @food.route(f'{base_path}/places', methods=["POST"])
 def get_places():

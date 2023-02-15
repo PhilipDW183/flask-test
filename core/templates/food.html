@@ -39,37 +39,46 @@
         </div>
 
         <div class="row">
-            {% for restaurant in restaurants %}
-            <div class = "col-12 col-sm-6 col-lg-4 mb-3">
-                <div class = "card h-100">
-                    <img src="{{ restaurant.image_url }}" class="card-img-top" alt="restaurant image">
-                    <div class = "card-body">
-                        <h5 class = "card-title">
-                            <a href="{{restaurant.url}}">
-                                {{restaurant.name}}
-                            </a>
-                        </h5>
-                        <h6 class = "card-subtitle text-muted mb-2">
-                            {% if restaurant.price %}
-                                Price: {{restaurant.price}} </br>
-                            {% else %}
-                                Price: N/A </br>
-                            {% endif %}
-                            Rating: {{restaurant.rating}}
-                        </h6>
-                        <p>
-                            {{restaurant.location.address1}}</br>
-                            {{restaurant.location.city}}</br>
-                            {{restaurant.location.zip_code}}</br>
-                        </p>
-                    </div>
-                    <div class = "card-footer">
-                        <p><b>Contact: {{restaurant.display_phone}}</b></p>
+            {% if error %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <h4 class ="alter-heading">{{ error }}</h4>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+            {% else %}
+                {% for restaurant in restaurants %}
+                <div class = "col-12 col-sm-6 col-lg-4 mb-3">
+                    <div class = "card h-100">
+                        <img src="{{ restaurant.image_url }}" class="card-img-top" alt="restaurant image">
+                        <div class = "card-body">
+                            <h5 class = "card-title">
+                                <a href="{{restaurant.url}}">
+                                    {{restaurant.name}}
+                                </a>
+                            </h5>
+                            <h6 class = "card-subtitle text-muted mb-2">
+                                {% if restaurant.price %}
+                                    Price: {{restaurant.price}} </br>
+                                {% else %}
+                                    Price: N/A </br>
+                                {% endif %}
+                                Rating: {{restaurant.rating}}
+                            </h6>
+                            <p>
+                                {{restaurant.location.address1}}</br>
+                                {{restaurant.location.city}}</br>
+                                {{restaurant.location.zip_code}}</br>
+                            </p>
+                        </div>
+                        <div class = "card-footer">
+                            <p><b>Contact: {{restaurant.display_phone}}</b></p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
             
 
         </div>
