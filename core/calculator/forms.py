@@ -8,6 +8,8 @@ class CalculatorForm(FlaskForm):
     operation = SelectField("Operation", choices=[("+", "Addition"), 
         ("-", "Subtraction"),
         ("/", "Division"),
-        ("*", "Multiplication")],
+        ("*", "Multiplication"),
+        ("%", "Remainder"),
+        ("//", "Floor division")],
         validators = [InputRequired()])
     submit = SubmitField("Calculate")
