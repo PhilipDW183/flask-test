@@ -18,4 +18,7 @@ def create_app():
     from core.food import food as food_bp
     app.register_blueprint(food_bp)
 
+    from core.calculator import calculator as calculator_bp
+    app.register_blueprint(calculator_bp)
+
     return app
