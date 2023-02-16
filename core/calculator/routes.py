@@ -24,7 +24,10 @@ def calculate():
         elif operation == "*":
             result = input1 * input2
         else:
-            result = input1 / input2
+            if (input1==0 and input2 ==0):
+                result = 0
+            else:
+                result = input1 / input2
 
         return render_template("calculator.html",
             input1 = input1,
@@ -42,8 +45,8 @@ def calculate():
             error="You cannot divide by zero")
     except ValueError:
         return render_template("calculator.html",
-            input1 = input1,
-            input2 = input2,
+            input1 = first_input,
+            input2 = second_input,
             operation = operation,
             result = "Bad input",
             calculation_success=False,
