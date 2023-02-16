@@ -11,7 +11,7 @@ ops = {
     '*' : operator.mul,
     '/' : operator.truediv,  # use operator.div for Python 2
     '%' : operator.mod,
-    '^' : operator.xor,
+    '//': operator.floordiv
 }
 
 
