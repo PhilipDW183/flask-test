@@ -7,44 +7,39 @@
         <p class="lead">A basic calculator application</p>
     </div>
 
-    <div class = "container">
-        <div class="form_collect mt-3 mb-5" id="calculator_form">
-            <h3 class="mb-3 mt-3">Calculate</h3>
-            <form action= {{ url_for("calculator.calculate") }} method = "post">
-                <div class="form-group row">
-                    <label for="input1" class="col-6 col-sm-4 col-md-2">Input 1</label>
-                    <div class = "col-6 col-sm-8 col-md-6 col-xl-2">
-                        <input type="text" id="input1" placeholder="12" name="input1" required
-                        value={{input1}}>
+        <div class = "container">
+            <div class="form_collect mt-3 mb-5" id="calculator_form">
+                <h3 class="mb-3 mt-3">Calculate</h3>
+                <form action="" method = "post">
+                    {{ form.hidden_tag()}}
+                    <div class="form-group row">
+                        <label class="col-6 col-sm-4 col-md-2">{{form.input1.label}}</label>
+                        <div class = "col-6 col-sm-8 col-md-6 col-xl-2">
+                            {{form.input1()}}
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="input2" class="col-6 col-sm-4 col-md-2">Input 2</label>
-                    <div class = "col-6 col-sm-8 col-md-6 col-xl-2">
-                        <input type="text" id="input2" placeholder="2" name="input2" required
-                        value={{input2}}>
+                    <div class="form-group row">
+                        <label for="input2" class="col-6 col-sm-4 col-md-2">{{form.input2.label}}</label>
+                        <div class = "col-6 col-sm-8 col-md-6 col-xl-2">
+                            {{form.input2()}}
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="operation" class="col-6 col-sm-4 col-md-2">Operation</label>
-                    <div class = "col-6 col-sm-8 col-md-6 col-xl-2">
-                        <select id="operation" required name="operation" value={{operation}}>
-                            <option value ="+">Addition</option>
-                            <option value ="-">Subtraction</option>
-                            <option value ="*">Multiplication</option>
-                            <option value ="/">Division</option>
-                        </select>
+                    <div class="form-group row">
+                        <label for="operation" class="col-6 col-sm-4 col-md-2">{{form.operation.label}}</label>
+                        <div class = "col-6 col-sm-8 col-md-6 col-xl-2">
+                            {{form.operation()}}
+                        </div>
                     </div>
-                </div>
-                <div class = "form_group">
-                    <Button type="reset" class="btn btn-outline-warning btn-large">Reset</Button>
-                    <Button type="submit" class="btn btn-primary btn-large">Submit</Button>
-                </div>
-            </form>
-        </div>
+                    <div class = "form_group">
+                        {{form.submit}}
+                    </div>
+                </form>
+            </div>
+        
 
         {% if calculation_success == True %}
-            <h3>{{input1}} {{operation}} {{input2}} = {{result}} </h3>
+            <h2>Calculation result:</h2>
+            <h3 class = "mb-3">{{input1}} {{operation}} {{input2}} = {{result}} </h3>
         {% elif calculation_success == False %}
             <div class = "alert alert-danger mb-3">
                 <h3 class ="alert heading">{{error}}</h3>
