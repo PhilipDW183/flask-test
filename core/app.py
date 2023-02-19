@@ -21,4 +21,7 @@ def create_app():
     from core.calculator import calculator as calculator_bp
     app.register_blueprint(calculator_bp)
 
+    from core.url_shortener import url_shortener as url_shortener_bp
+    app.register_blueprint(url_shortener_bp)
+
     return app
