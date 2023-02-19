@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}URL Shortener{% endblock %}
+
+{% block content %}
+    <div class="jumbotron bg-secondary text-light">
+        <h1 class="display-4">URL shortener</h1>
+        <p class="lead">An application to shorten a URL.</p>
+    </div>
+
+    <div class = "form_collect mt-3 mb-5" id="new_task">
+        <form action = {{ url_for("url_shortener.shorten_url") }} method="post">
+            <div class="form-group row">
+                <label for="long_url" class ="col-6 col-sm-4 col-md-2">Long url</label>
+                <div class = "col-6 col-sm-8 col-lg-6">
+                    <input type = "url" name="long_url" id="long_url" class="form-control" required>
+                </div>   
+            </div>
+            <div class = "form_item">
+                <Button type="submit" class="btn btn-primary btn-large">Shorten</Button>
+            </div>
+        </form>
+    </div>
+
+    <div>
+        {% if short_url %}
+            <p>Short URL: <a href= "url/{{short_url}}", target="_blank" >{{short_url}}</a></p>
+        {% endif %}
+    </div>
+
+{% endblock %}
