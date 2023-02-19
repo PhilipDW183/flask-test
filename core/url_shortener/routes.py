@@ -18,6 +18,5 @@ def shorten_url():
 
 @url_shortener.route(f'{base_path}/<shortened_url>')
 def redirect_to_url(shortened_url):
-    long_url = s.tinurl.expand(shortened_url)
-    print(long_url)
+    long_url = s.tinyurl.expand(shortened_url)
     return redirect(long_url)
