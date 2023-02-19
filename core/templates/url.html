@@ -7,11 +7,11 @@
         <p class="lead">An application to shorten a URL.</p>
     </div>
 
-    <div class = "form_collect mt-3 mb-5" id="new_task">
+    <div class = "form_collect mt-3 mb-3" id="new_task">
         <form action = {{ url_for("url_shortener.shorten_url") }} method="post">
             <div class="form-group row">
-                <label for="long_url" class ="col-6 col-sm-4 col-md-2">Long url</label>
-                <div class = "col-6 col-sm-8 col-lg-6">
+                <label for="long_url" class ="col-4 col-md-2">Long url</label>
+                <div class = "col-8 col-lg-6">
                     <input type = "url" name="long_url" id="long_url" class="form-control" required>
                 </div>   
             </div>
