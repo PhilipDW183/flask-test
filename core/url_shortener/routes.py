@@ -15,8 +15,3 @@ def shorten_url():
     long_url = request.form.get('long_url')
     short_url = s.tinyurl.short(long_url)
     return render_template("url.html", short_url=short_url)
-
-@url_shortener.route(f'{base_path}/<shortened_url>')
-def redirect_to_url(shortened_url):
-    long_url = s.tinyurl.expand(shortened_url)
-    return redirect(long_url)
